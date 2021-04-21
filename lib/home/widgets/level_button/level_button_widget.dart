@@ -37,22 +37,19 @@ class LevelButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 40),
-      child: Container(
-        decoration: BoxDecoration(
-          color: color,
-          border: Border.fromBorderSide(
-            BorderSide(color: borderColor),
-          ),
-          borderRadius: BorderRadius.circular(28),
+    return Container(
+      decoration: BoxDecoration(
+        color: color,
+        border: Border.fromBorderSide(
+          BorderSide(color: borderColor),
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-          child: Text(
-            label,
-            style: GoogleFonts.notoSans(color: fontColor, fontSize: 13),
-          ),
+        borderRadius: BorderRadius.circular(28),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+        child: Text(
+          label,
+          style: GoogleFonts.notoSans(color: fontColor, fontSize: 13),
         ),
       ),
     );
