@@ -4,10 +4,9 @@ import 'package:devquiz/shared/models/question_model.dart';
 import 'package:flutter/material.dart';
 
 class QuizWidget extends StatelessWidget {
-  final String title;
   final QuestionModel question;
 
-  const QuizWidget({required this.title, required this.question});
+  const QuizWidget({required this.question});
 
   @override
   Widget build(BuildContext context) {

@@ -13,14 +13,10 @@ class ChallengePage extends StatefulWidget {
   });
 
   @override
-  _ChallengePageState createState() => _ChallengePageState(questions);
+  _ChallengePageState createState() => _ChallengePageState();
 }
 
 class _ChallengePageState extends State<ChallengePage> {
-  final List<QuestionModel> questions;
-
-  _ChallengePageState(this.questions);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +38,7 @@ class _ChallengePageState extends State<ChallengePage> {
             )),
       ),
       body: QuizWidget(
-        question: questions[0],
+        question: widget.questions[0],
       ),
       bottomNavigationBar: SafeArea(
         bottom: true,
