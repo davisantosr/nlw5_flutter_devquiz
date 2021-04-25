@@ -11,6 +11,7 @@ class ChartWidget extends StatefulWidget {
   _ChartWidgetState createState() => _ChartWidgetState();
 }
 
+// SingleTickerProviderStateMixin to handle the animation accessing vsync
 class _ChartWidgetState extends State<ChartWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
