@@ -4,6 +4,10 @@ import 'package:devquiz/core/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
+  final String title;
+
+  ResultPage({required this.title});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +31,7 @@ class ResultPage extends StatelessWidget {
                         style: AppTextStyles.body,
                         children: [
                           TextSpan(
-                              text: '\nGerenciamento de Estado',
-                              style: AppTextStyles.bodyBold),
+                              text: '\n$title', style: AppTextStyles.bodyBold),
                           TextSpan(text: '\ncom 6 de 10 acertos.'),
                         ]),
                     textAlign: TextAlign.center),

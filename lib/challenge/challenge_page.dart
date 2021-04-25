@@ -9,9 +9,11 @@ import 'package:devquiz/shared/models/question_model.dart';
 
 class ChallengePage extends StatefulWidget {
   final List<QuestionModel> questions;
+  final String title;
 
   ChallengePage({
     required this.questions,
+    required this.title,
   });
 
   @override
@@ -98,10 +100,12 @@ class _ChallengePageState extends State<ChallengePage> {
                             child: NextButtonWidget.green(
                           label: 'Confirmar',
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ResultPage(),
+                                  builder: (context) => ResultPage(
+                                    title: widget.title,
+                                  ),
                                 ));
                           },
                         )),
