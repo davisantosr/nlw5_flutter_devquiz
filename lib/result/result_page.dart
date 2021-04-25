@@ -5,8 +5,14 @@ import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
   final String title;
+  final int questionsLength;
+  final int result;
 
-  ResultPage({required this.title});
+  ResultPage({
+    required this.title,
+    required this.questionsLength,
+    required this.result,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +38,9 @@ class ResultPage extends StatelessWidget {
                         children: [
                           TextSpan(
                               text: '\n$title', style: AppTextStyles.bodyBold),
-                          TextSpan(text: '\ncom 6 de 10 acertos.'),
+                          TextSpan(
+                              text:
+                                  '\ncom $result de $questionsLength acertos.'),
                         ]),
                     textAlign: TextAlign.center),
               ],

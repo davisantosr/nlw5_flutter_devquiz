@@ -33,12 +33,19 @@ class _ChallengePageState extends State<ChallengePage> {
     super.initState();
   }
 
-  nextPage() {
+  void nextPage() {
     if (controller.currentPage < widget.questions.length)
       pageController.nextPage(
         duration: Duration(milliseconds: 200),
         curve: Curves.linear,
       );
+  }
+
+  void onSelected(bool value) {
+    if (value) {
+      controller.correctAnswers++;
+    }
+    nextPage();
   }
 
   @override
@@ -74,7 +81,7 @@ class _ChallengePageState extends State<ChallengePage> {
         children: widget.questions
             .map((e) => QuizWidget(
                   question: e,
-                  onChange: nextPage,
+                  onSelected: onSelected,
                 ))
             .toList(),
       ),
@@ -105,7 +112,9 @@ class _ChallengePageState extends State<ChallengePage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ResultPage(
+                                    result: controller.correctAnswers,
                                     title: widget.title,
+                                    questionsLength: widget.questions.length,
                                   ),
                                 ));
                           },
