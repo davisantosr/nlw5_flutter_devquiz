@@ -1,3 +1,4 @@
+import 'package:devquiz/challenge/challenge_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:devquiz/challenge/nextbutton/next_button_widget.dart';
@@ -17,6 +18,18 @@ class ChallengePage extends StatefulWidget {
 }
 
 class _ChallengePageState extends State<ChallengePage> {
+  final controller = ChallengeController();
+  final pageController = PageController();
+
+  @override
+  void initState() {
+    pageController.addListener(() {
+      controller.currentPage = pageController.page!.toInt() + 1;
+      setState(() {});
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,13 +45,20 @@ class _ChallengePageState extends State<ChallengePage> {
                     onPressed: () {
                       Navigator.pop(context);
                     }),
+                ValueListenableBuilder<int>(
+                  valueListenable: controller.currentPageNotifier,
+                  builder: (context, value, _) => QuestionIndicatorWidget(
+                    currentPage: controller.currentPage,
+                    length: widget.questions.length,
+                  ),
+                )
                 // BackButton(), <== Short cut to add a back arrow
-                QuestionIndicatorWidget(),
               ],
             )),
       ),
-      body: QuizWidget(
-        question: widget.questions[0],
+      body: PageView(
+        controller: pageController,
+        children: widget.questions.map((e) => QuizWidget(question: e)).toList(),
       ),
       bottomNavigationBar: SafeArea(
         bottom: true,
