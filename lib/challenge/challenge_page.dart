@@ -30,6 +30,13 @@ class _ChallengePageState extends State<ChallengePage> {
     super.initState();
   }
 
+  nextPage() {
+    pageController.nextPage(
+      duration: Duration(milliseconds: 200),
+      curve: Curves.linear,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +67,12 @@ class _ChallengePageState extends State<ChallengePage> {
         physics:
             NeverScrollableScrollPhysics(), //Not allowed to change page with gesture
         controller: pageController,
-        children: widget.questions.map((e) => QuizWidget(question: e)).toList(),
+        children: widget.questions
+            .map((e) => QuizWidget(
+                  question: e,
+                  onChange: nextPage,
+                ))
+            .toList(),
       ),
       bottomNavigationBar: SafeArea(
         bottom: true,
@@ -74,20 +86,16 @@ class _ChallengePageState extends State<ChallengePage> {
               Expanded(
                   child: NextButtonWidget.white(
                 label: 'Pular',
-                onTap: () {
-                  pageController.nextPage(
-                      duration: Duration(milliseconds: 200),
-                      curve: Curves.linear);
-                },
+                onTap: nextPage,
               )),
               SizedBox(
                 width: 7,
               ),
-              Expanded(
-                  child: NextButtonWidget.green(
-                label: 'Confirmar',
-                onTap: () {},
-              )),
+              // Expanded(
+              //     child: NextButtonWidget.green(
+              //   label: 'Confirmar',
+              //   onTap: () {},
+              // )),
             ],
           ),
         ),
