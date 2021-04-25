@@ -80,6 +80,7 @@ class _ChallengePageState extends State<ChallengePage> {
       ),
       bottomNavigationBar: SafeArea(
         bottom: true,
+        minimum: EdgeInsets.only(bottom: 30),
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
