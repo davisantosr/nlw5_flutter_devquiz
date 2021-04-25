@@ -14,7 +14,7 @@ class QuizWidget extends StatefulWidget {
 }
 
 class _QuizWidgetState extends State<QuizWidget> {
-  int? selectedIntex = 1;
+  int? selectedIntex = -1;
 
   AnswerModel answer(int index) => widget.question.answers[index];
 
@@ -35,6 +35,12 @@ class _QuizWidgetState extends State<QuizWidget> {
           ),
           for (var i = 0; i < widget.question.answers.length; i++)
             AnswerWidget(
+              disabled: selectedIntex != -1,
+              isSelected: selectedIntex == i,
+              onTap: () {
+                selectedIntex = i;
+                setState(() {});
+              },
               answer: answer(i),
             )
         ],
